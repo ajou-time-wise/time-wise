@@ -1,20 +1,61 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import ManageTodoView from "./screens/ManageTodoView";
+import CalendarTodoListView from "./screens/CalendarTodoListView";
+import ScheduleView from "./screens/ScheduleView";
+import { Ionicons } from "@expo/vector-icons";
+import IconButton from "./components/IconButton";
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function TimeWiseMainView({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Calendar"
+        component={CalendarTodoListView}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="calendar" color={color} size={size} />
+          ),
+          headerRight: ({ tintColor }) => (
+            <IconButton
+              icon="add"
+              size={30}
+              color={tintColor}
+              onPress={() => {
+                navigation.navigate("Manage");
+              }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Schedule"
+        component={ScheduleView}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="time" color={color} size={size} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="TimeWiseMainView"
+          component={TimeWiseMainView}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="Manage" component={ManageTodoView} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
