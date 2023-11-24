@@ -53,7 +53,7 @@ export default function App() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setShowMainScreen(true);
-    }, 6000);
+    }, 2000);
 
     return () => clearTimeout(timeout);
   }, []);

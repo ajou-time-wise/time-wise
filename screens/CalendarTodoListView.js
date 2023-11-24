@@ -1,5 +1,7 @@
+import MiniCalendar from "../components/MiniCalendar";
+
 function CalendarTodoListView() {
-  return;
+  return <MiniCalendar />;
 }
 
 export default CalendarTodoListView;
