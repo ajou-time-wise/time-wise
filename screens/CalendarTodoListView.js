@@ -1,11 +1,5 @@
-import { View, Text } from "react-native";
-
 function CalendarTodoListView() {
-  return (
-    <View>
-      <Text>CalendarTodoListView</Text>
-    </View>
-  );
+  return;
 }
 
 export default CalendarTodoListView;
