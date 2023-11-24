@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { Calendar } from "react-native-calendars";
-import Todos from "../data/Todos";
-import { isEqulsDate } from "../utils/date";
+import Todos from "../../data/Todos";
+import { isEqulsDate } from "../../utils/date";
 
 function MiniCalendar({ setTodo }) {
   return (

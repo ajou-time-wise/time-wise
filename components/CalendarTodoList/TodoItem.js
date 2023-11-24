@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import Checkbox from "expo-checkbox";
-import IconButton from "../components/IconButton";
-import { Colors } from "../constant/colors";
+import IconButton from "../../components/IconButton";
+import { Colors } from "../../constant/colors";
 
 function TodoItem({ todo }) {
   return (

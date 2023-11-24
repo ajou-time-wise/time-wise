@@ -1,8 +1,7 @@
 import { useState } from "react";
-import MiniCalendar from "../components/MiniCalendar";
+import MiniCalendar from "../components/CalendarTodoList/MiniCalendar";
 import Todos from "../data/Todos";
-import TodoList from "../components/TodoList";
-import { View } from "react-native";
+import TodoList from "../components/CalendarTodoList/TodoList";
 
 function CalendarTodoListView() {
   const [todos, setTodo] = useState(
