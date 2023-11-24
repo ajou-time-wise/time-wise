@@ -1,20 +1,23 @@
 import { useState } from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
-import { getFormattedDate } from "../utils/date";
-import { Colors } from "../constant/colors";
+import { View, StyleSheet, Pressable, Button } from "react-native";
 import TodoDate from "../components/ManageTodo/TodoDate";
 import TodoContent from "../components/ManageTodo/TodoContent";
 import Time from "../components/ManageTodo/Time";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
+import { Colors } from "../constant/colors";
+import { useTodoContext } from "../hooks/TodoProvider";
 
-function ManageTodoView() {
+function ManageTodoView({ navigation }) {
+  const { todos, addTodo, deleteTodo } = useTodoContext();
+
   const [todo, setTodo] = useState({
     date: new Date(),
-    isChecked: false,
     content: "",
     requireTime: new Date(),
   });
+
   const [selectTime, setSelectTime] = useState(todo.requireTime);
+
   const showTimePicker = () => {
     DateTimePickerAndroid.open({
       value: selectTime,
@@ -36,6 +39,11 @@ function ManageTodoView() {
       >
         <Time todo={todo} setTodo={setTodo} text={"Require Time"} />
       </Pressable>
+      <Button
+        title="ADD"
+        color={Colors.color50}
+        onPress={() => addTodo(todo.date, todo.content, todo.requireTime)}
+      />
     </View>
   );
 }
