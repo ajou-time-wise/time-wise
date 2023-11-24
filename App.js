@@ -6,6 +6,8 @@ import CalendarTodoListView from "./screens/CalendarTodoListView";
 import ScheduleView from "./screens/ScheduleView";
 import { Ionicons } from "@expo/vector-icons";
 import IconButton from "./components/IconButton";
+import { useEffect, useState } from "react";
+import InitialView from "./screens/InitialView";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -46,6 +48,19 @@ function TimeWiseMainView({ navigation }) {
 }
 
 export default function App() {
+  const [showMainScreen, setShowMainScreen] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowMainScreen(true);
+    }, 6000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (!showMainScreen) {
+    return <InitialView />;
+  }
   return (
     <NavigationContainer>
       <Stack.Navigator>
