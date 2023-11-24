@@ -12,7 +12,7 @@ function TodoItem({ todo }) {
           {todo.todo}
         </Text>
         <Text style={styles.textStyle}>{todo.hour}</Text>
-        <IconButton icon="close" size={20} color={"blue"} onPress={() => {}} />
+        <IconButton icon="close" size={20} color={"grey"} onPress={() => {}} />
       </View>
     </View>
   );
@@ -25,9 +25,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flex: 1,
     backgroundColor: Colors.color30,
-    padding: 10,
+    padding: 5,
     marginVertical: 5,
-    borderRadius: 10,
+    borderRadius: 5,
   },
   textStyle: {
     marginHorizontal: 10,
