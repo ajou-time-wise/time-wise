@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { Colors } from "../constant/colors";
-import { getFormattedDate } from "../utils/date";
+import { Colors } from "../../constant/colors";
+import { getFormattedDate } from "../../utils/date";
 import { useState } from "react";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 
-function DatePicker({ todo, setTodo }) {
+function TodoDate({ todo, setTodo }) {
   const [selectedDate, setSelectDate] = useState(todo.date);
   const showDatePicker = () => {
     DateTimePickerAndroid.open({
@@ -29,7 +29,7 @@ function DatePicker({ todo, setTodo }) {
   );
 }
 
-export default DatePicker;
+export default TodoDate;
 
 const styles = StyleSheet.create({
   container: {

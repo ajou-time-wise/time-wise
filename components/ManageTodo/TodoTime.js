@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 
-function Time({ text, todo }) {
+function TodoTime({ text, todo }) {
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}>{text}</Text>
@@ -11,7 +11,7 @@ function Time({ text, todo }) {
   );
 }
 
-export default Time;
+export default TodoTime;
 
 const styles = StyleSheet.create({
   container: {
