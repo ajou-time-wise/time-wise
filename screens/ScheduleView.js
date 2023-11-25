@@ -1,24 +1,21 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { Agenda } from "react-native-calendars";
+import Schdules from "../data/Schdules";
+import { getFormattedDate } from "../utils/date";
 
 function ScheduleView() {
-  const [items, setItems] = useState({
-    "2023-11-24": [
-      { name: "Meeting with Client", time: "10:00 AM - 11:00 AM" },
-      { name: "Lunch with Team", time: "12:00 PM - 1:00 PM" },
-    ],
-    "2023-11-24": [
-      { name: "Meeting with Client", time: "10:00 AM - 11:00 AM" },
-      { name: "Lunch with Team", time: "12:00 PM - 1:00 PM" },
-    ],
-    // Add more items for different dates as needed
-  });
+  const [data, setData] = useState(Schdules);
+  const [selectDate, setSelectDate] = useState(new Date());
+  const [schdules, setSchdules] = useState(
+    data[getFormattedDate(new Date())] || []
+  );
 
   const onDayPress = (day) => {
     // Check if the selected day has items, if not, set an empty array
-    const selectedDayItems = items[day.dateString] || [];
-    setItems({ [day.dateString]: selectedDayItems });
+    const selectedDayItems = data[day.dateString] || [];
+    setSchdules(selectedDayItems);
+    setSelectDate(new Date(day.dateString));
   };
 
   const renderItem = (item) => (
@@ -31,7 +28,11 @@ function ScheduleView() {
   );
 
   return (
-    <Agenda items={items} renderItem={renderItem} onDayPress={onDayPress} />
+    <Agenda
+      items={{ [getFormattedDate(selectDate)]: schdules }}
+      renderItem={renderItem}
+      onDayPress={onDayPress}
+    />
   );
 }
 
