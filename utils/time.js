@@ -1,5 +1,5 @@
 export function getFormattedTime(time) {
-  return `${time.getHours()}H ${time.getMinute()}M`;
+  return `${time.getHours()}H ${time.getMinutes()}M`;
 }
 
 export function printScheduleTime(startTime, endTime) {

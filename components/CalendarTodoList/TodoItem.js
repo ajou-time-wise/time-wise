@@ -12,9 +12,9 @@ function TodoItem({ todo }) {
         <Text style={[styles.textStyle, styles.todoContentStyle]}>
           {todo.content}
         </Text>
-        {/* <Text style={styles.textStyle}>
-          {getFormattedTime(todo.requireTime)}
-        </Text> */}
+        <Text style={styles.textStyle}>
+          {getFormattedTime(new Date(todo.requireTime))}
+        </Text>
         <IconButton icon="close" size={20} color={"grey"} onPress={() => {}} />
       </View>
     </View>
@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
     opacity: 0.75,
   },
   todoContentStyle: {
-    width: 200,
+    width: 150,
   },
 });
