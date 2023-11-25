@@ -12,12 +12,11 @@ export function ScheduleProvider({ children }) {
     retrieveSchedules();
   }, []);
 
-  const addSchedule = async (date, content, startTime, endTime) => {
+  const addSchedule = async (date, title, start, end) => {
     const newSchedule = {
-      id: Date.now().toString(),
-      content,
-      startTime,
-      endTime,
+      title,
+      start,
+      end,
     };
 
     try {
@@ -34,6 +33,7 @@ export function ScheduleProvider({ children }) {
         JSON.stringify(updatedSchedules)
       );
       retrieveSchedules();
+      console.log(scheduleData);
     } catch (error) {
       console.error(error);
     }
@@ -44,12 +44,20 @@ export function ScheduleProvider({ children }) {
       const keys = await AsyncStorage.getAllKeys();
       const scheduleKeys = keys.filter((key) => key.includes("@Schedule"));
       const allSchedules = await AsyncStorage.multiGet(scheduleKeys);
+      const paredSchedules = allSchedules.map(([key, value]) => {
+        const parsedValue = JSON.parse(value);
 
-      const paredSchedules = allSchedules.map(([key, value]) => ({
-        date: key.split(":")[1],
-        todos: JSON.parse(value),
-      }));
-      setScheduleData(paredSchedules);
+        // Assuming start and end are stored as strings
+        const parsedSchedules = parsedValue.map((schedule) => ({
+          ...schedule,
+          start: new Date(schedule.start),
+          end: new Date(schedule.end),
+        }));
+
+        return parsedSchedules;
+      });
+
+      setScheduleData(paredSchedules.flat());
     } catch (error) {
       console.error("Error restrieving todos:", error);
     }

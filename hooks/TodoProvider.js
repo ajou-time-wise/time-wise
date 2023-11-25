@@ -10,6 +10,7 @@ export function TodoProvider({ children }) {
   useEffect(() => {
     retrieveTodos();
   }, []);
+
   const addTodo = async (date, content, requireTime) => {
     const newTodo = {
       id: Date.now().toString(),
@@ -30,7 +31,6 @@ export function TodoProvider({ children }) {
         JSON.stringify(updatedTodos)
       );
       retrieveTodos();
-      console.log(data);
     } catch (error) {
       console.error(error);
     }

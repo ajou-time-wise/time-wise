@@ -11,6 +11,7 @@ function CalendarTodoListView() {
   const [findTodos, setFindTodos] = useState([]);
 
   useEffect(() => {
+    // clearAllAsyncStorage();
     setFindTodos(
       data.find((item) => item.date === getFormattedDate(selectedDate))
         ?.todos || []

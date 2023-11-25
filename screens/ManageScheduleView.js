@@ -22,13 +22,22 @@ function ManageScheduleView() {
   const showStartTimePicker = () => {
     showTimePicker(startTime, setStartime);
   };
-
+  //    end: new Date(2020, 1, 11, 16, 30),
   const showTimePicker = (time, setTime) => {
     DateTimePickerAndroid.open({
       value: time,
       onChange: (event, selectTime) => {
         const currentTime = selectTime || time;
-        setTime(currentTime);
+        setTime(
+          new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            currentTime.getHours(),
+            currentTime.getMinutes(),
+            0
+          )
+        );
       },
       mode: "time",
       is24Hour: true,
