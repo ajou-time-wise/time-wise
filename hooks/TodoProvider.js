@@ -19,15 +19,18 @@ export function TodoProvider({ children }) {
     };
 
     try {
-      const existingTodos = await AsyncStorage.getItem(getFormattedDate(date));
+      const existingTodos = await AsyncStorage.getItem(
+        `@Todo:${getFormattedDate(date)}`
+      );
       const paredExistingTodos = existingTodos ? JSON.parse(existingTodos) : [];
       const updatedTodos = [...paredExistingTodos, newTodo];
 
       await AsyncStorage.setItem(
-        getFormattedDate(date),
+        `@Todo:${getFormattedDate(date)}`,
         JSON.stringify(updatedTodos)
       );
       retrieveTodos();
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
@@ -36,10 +39,11 @@ export function TodoProvider({ children }) {
   const retrieveTodos = async () => {
     try {
       const keys = await AsyncStorage.getAllKeys();
-      const allTodos = await AsyncStorage.multiGet(keys);
+      const todoKeys = keys.filter((key) => key.includes("@Todo"));
+      const allTodos = await AsyncStorage.multiGet(todoKeys);
 
       const parsedTodos = allTodos.map(([key, value]) => ({
-        date: key,
+        date: key.split(":")[1],
         todos: JSON.parse(value),
       }));
       setData(parsedTodos);
@@ -50,7 +54,9 @@ export function TodoProvider({ children }) {
 
   const deleteTodo = async (date, todoId) => {
     try {
-      const existingTodos = await AsyncStorage.getItem(getFormattedDate(date));
+      const existingTodos = await AsyncStorage.getItem(
+        `@Todo:${getFormattedDate(date)}`
+      );
       const parsedExistingTodos = existingTodos
         ? JSON.parse(existingTodos)
         : [];
@@ -59,7 +65,7 @@ export function TodoProvider({ children }) {
       );
 
       await AsyncStorage.setItem(
-        getFormattedDate(date),
+        `@Todo:${getFormattedDate(date)}`,
         JSON.stringify(updatedTodos)
       );
       retrieveTodos();

@@ -5,8 +5,11 @@ import Time from "../components/MangeScheduleView.js/Time";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import Content from "../components/MangeScheduleView.js/Content";
 import { Colors } from "../constant/colors";
+import { useScheduleContext } from "../hooks/ScheduleProvider";
 
 function ManageScheduleView() {
+  const { scheduleData, addSchedule } = useScheduleContext();
+
   const [date, setDate] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
   const [startTime, setStartime] = useState(new Date());
@@ -54,7 +57,11 @@ function ManageScheduleView() {
         text={content}
         setText={setContent}
       />
-      <Button title="ADD" color={Colors.color50} onPress={() => {}} />
+      <Button
+        title="ADD"
+        color={Colors.color50}
+        onPress={() => addSchedule(date, content, startTime, endTime)}
+      />
     </View>
   );
 }

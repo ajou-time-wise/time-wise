@@ -8,8 +8,9 @@ import { Ionicons } from "@expo/vector-icons";
 import IconButton from "./components/IconButton";
 import { useEffect, useState } from "react";
 import InitialView from "./screens/InitialView";
-import { TodoProvider } from "./hooks/TodoProvider";
 import ManageScheduleView from "./screens/ManageScheduleView";
+import { ScheduleContext, ScheduleProvider } from "./hooks/ScheduleProvider";
+import { TodoProvider } from "./hooks/TodoProvider";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -74,18 +75,23 @@ export default function App() {
   //   return <InitialView />;
   // }
   return (
-    <TodoProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="TimeWiseMainView"
-            component={TimeWiseMainView}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen name="Manage" component={ManageTodoView} />
-          <Stack.Screen name="ManageSchedule" component={ManageScheduleView} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </TodoProvider>
+    <ScheduleProvider>
+      <TodoProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="TimeWiseMainView"
+              component={TimeWiseMainView}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="Manage" component={ManageTodoView} />
+            <Stack.Screen
+              name="ManageSchedule"
+              component={ManageScheduleView}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </TodoProvider>
+    </ScheduleProvider>
   );
 }
