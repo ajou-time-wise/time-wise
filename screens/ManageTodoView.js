@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { View, StyleSheet, Pressable, Button } from "react-native";
-import TodoDate from "../components/ManageTodo/TodoDate";
 import TodoContent from "../components/ManageTodo/TodoContent";
-import Time from "../components/ManageTodo/Time";
+import Time from "../components/Time";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import { Colors } from "../constant/colors";
 import { useTodoContext } from "../hooks/TodoProvider";
+import DatePicker from "../components/DatePicker";
 
 function ManageTodoView({ navigation }) {
   const { data, addTodo } = useTodoContext();
@@ -29,7 +29,7 @@ function ManageTodoView({ navigation }) {
   };
   return (
     <View style={styles.container}>
-      <TodoDate todo={todo} setTodo={setTodo} />
+      <DatePicker todo={todo} setTodo={setTodo} />
       <TodoContent todo={todo} setTodo={setTodo} />
       <Pressable
         onPress={showTimePicker}
