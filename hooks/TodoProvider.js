@@ -74,6 +74,37 @@ export function TodoProvider({ children }) {
     }
   };
 
+  const changeTodoStatus = async (date, todoId) => {
+    try {
+      const existingTodos = await AsyncStorage.getItem(
+        `@Todo:${getFormattedDate(date)}`
+      );
+      const parsedExistingTodos = existingTodos
+        ? JSON.parse(existingTodos)
+        : [];
+
+      const todoIndex = parsedExistingTodos.findIndex(
+        (todo) => todo.id === todoId
+      );
+
+      if (todoIndex !== -1) {
+        parsedExistingTodos[todoIndex].isComplete =
+          !parsedExistingTodos[todoIndex].isComplete;
+
+        await AsyncStorage.setItem(
+          `@Todo:${getFormattedDate(date)}`,
+          JSON.stringify(parsedExistingTodos)
+        );
+
+        retrieveTodos();
+      } else {
+        console.warn(`Todo with ID ${todoId} not found.`);
+      }
+    } catch (error) {
+      console.error("Error changing todo status:", error);
+    }
+  };
+
   const clearAllAsyncStorage = async () => {
     try {
       await AsyncStorage.clear();
@@ -84,7 +115,14 @@ export function TodoProvider({ children }) {
   };
   return (
     <TodoContext.Provider
-      value={{ data, addTodo, deleteTodo, retrieveTodos, clearAllAsyncStorage }}
+      value={{
+        data,
+        addTodo,
+        deleteTodo,
+        retrieveTodos,
+        clearAllAsyncStorage,
+        changeTodoStatus,
+      }}
     >
       {children}
     </TodoContext.Provider>

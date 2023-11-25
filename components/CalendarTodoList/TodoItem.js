@@ -4,14 +4,16 @@ import IconButton from "../../components/IconButton";
 import { Colors } from "../../constant/colors";
 import { getFormattedTime } from "../../utils/time";
 import { useTodoContext } from "../../hooks/TodoProvider";
-import { getFormattedDate } from "../../utils/date";
 
 function TodoItem({ todo, selectedDate }) {
-  const { deleteTodo } = useTodoContext();
+  const { deleteTodo, changeTodoStatus } = useTodoContext();
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <View style={styles.contentContainer}>
-        <Checkbox value={todo.isComplete} onValueChange={() => {}} />
+        <Checkbox
+          value={todo.isComplete}
+          onValueChange={() => changeTodoStatus(selectedDate, todo.id)}
+        />
         <Text style={[styles.textStyle, styles.todoContentStyle]}>
           {todo.content}
         </Text>
