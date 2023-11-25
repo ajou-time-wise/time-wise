@@ -9,6 +9,7 @@ import IconButton from "./components/IconButton";
 import { useEffect, useState } from "react";
 import InitialView from "./screens/InitialView";
 import { TodoProvider } from "./hooks/TodoProvider";
+import ManageScheduleView from "./screens/ManageScheduleView";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -42,6 +43,16 @@ function TimeWiseMainView({ navigation }) {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="time" color={color} size={size} />
           ),
+          headerRight: ({ tintColor }) => (
+            <IconButton
+              icon="add"
+              size={30}
+              color={tintColor}
+              onPress={() => {
+                navigation.navigate("ManageSchedule");
+              }}
+            />
+          ),
         }}
       />
     </Tab.Navigator>
@@ -72,6 +83,7 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen name="Manage" component={ManageTodoView} />
+          <Stack.Screen name="ManageSchedule" component={ManageScheduleView} />
         </Stack.Navigator>
       </NavigationContainer>
     </TodoProvider>
