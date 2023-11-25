@@ -1,9 +1,9 @@
 import { View, FlatList } from "react-native";
 import TodoItem from "./TodoItem";
 
-function TodoList({ todos }) {
+function TodoList({ todos, selectedDate }) {
   const renderItem = ({ item }) => {
-    return <TodoItem todo={item} />;
+    return <TodoItem todo={item} selectedDate={selectedDate} />;
   };
 
   return (

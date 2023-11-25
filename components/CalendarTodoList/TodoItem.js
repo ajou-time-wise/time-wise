@@ -3,8 +3,11 @@ import Checkbox from "expo-checkbox";
 import IconButton from "../../components/IconButton";
 import { Colors } from "../../constant/colors";
 import { getFormattedTime } from "../../utils/time";
+import { useTodoContext } from "../../hooks/TodoProvider";
+import { getFormattedDate } from "../../utils/date";
 
-function TodoItem({ todo }) {
+function TodoItem({ todo, selectedDate }) {
+  const { deleteTodo } = useTodoContext();
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <View style={styles.contentContainer}>
@@ -15,7 +18,12 @@ function TodoItem({ todo }) {
         <Text style={styles.textStyle}>
           {getFormattedTime(new Date(todo.requireTime))}
         </Text>
-        <IconButton icon="close" size={20} color={"grey"} onPress={() => {}} />
+        <IconButton
+          icon="close"
+          size={20}
+          color={"grey"}
+          onPress={() => deleteTodo(selectedDate, todo.id)}
+        />
       </View>
     </View>
   );

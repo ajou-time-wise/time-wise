@@ -21,7 +21,7 @@ function CalendarTodoListView() {
   return (
     <>
       <MiniCalendar setSeletedDate={setSeletedDate} />
-      <TodoList todos={findTodos} />
+      <TodoList todos={findTodos} selectedDate={selectedDate} />
     </>
   );
 }
