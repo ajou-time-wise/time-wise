@@ -8,7 +8,7 @@ import { Colors } from "../constant/colors";
 import { useTodoContext } from "../hooks/TodoProvider";
 
 function ManageTodoView({ navigation }) {
-  const { todos, addTodo, deleteTodo } = useTodoContext();
+  const { data, addTodo } = useTodoContext();
 
   const [todo, setTodo] = useState({
     date: new Date(),
@@ -16,11 +16,9 @@ function ManageTodoView({ navigation }) {
     requireTime: new Date(),
   });
 
-  const [selectTime, setSelectTime] = useState(todo.requireTime);
-
   const showTimePicker = () => {
     DateTimePickerAndroid.open({
-      value: selectTime,
+      value: new Date(),
       onChange: (event, selectTime) => {
         const currentTime = selectTime || todo.requireTime;
         setTodo((prevTodo) => ({ ...prevTodo, requireTime: currentTime }));

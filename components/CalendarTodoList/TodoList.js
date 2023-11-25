@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import TodoItem from "./TodoItem";
 
 function TodoList({ todos }) {

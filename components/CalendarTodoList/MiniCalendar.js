@@ -3,15 +3,12 @@ import { Calendar } from "react-native-calendars";
 import Todos from "../../data/Todos";
 import { isEqulsDate } from "../../utils/date";
 
-function MiniCalendar({ setTodo }) {
+function MiniCalendar({ setSeletedDate }) {
   return (
     <View style={styles.container}>
       <Calendar
         onDayPress={(day) => {
-          const todos = Todos.filter((todo) =>
-            isEqulsDate(new Date(day.dateString), todo.date)
-          );
-          setTodo(todos);
+          setSeletedDate(new Date(day.dateString));
         }}
       />
     </View>

@@ -2,16 +2,19 @@ import { View, Text, StyleSheet } from "react-native";
 import Checkbox from "expo-checkbox";
 import IconButton from "../../components/IconButton";
 import { Colors } from "../../constant/colors";
+import { getFormattedTime } from "../../utils/time";
 
 function TodoItem({ todo }) {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <View style={styles.contentContainer}>
-        <Checkbox value={todo.isChecked} onValueChange={() => {}} />
+        <Checkbox value={todo.isComplete} onValueChange={() => {}} />
         <Text style={[styles.textStyle, styles.todoContentStyle]}>
-          {todo.todo}
+          {todo.content}
         </Text>
-        <Text style={styles.textStyle}>{todo.hour}</Text>
+        {/* <Text style={styles.textStyle}>
+          {getFormattedTime(todo.requireTime)}
+        </Text> */}
         <IconButton icon="close" size={20} color={"grey"} onPress={() => {}} />
       </View>
     </View>

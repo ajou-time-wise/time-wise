@@ -5,15 +5,14 @@ import { getFormattedDate } from "../utils/date";
 const TodoContext = createContext();
 
 export function TodoProvider({ children }) {
-  const [todos, setTodos] = useState();
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     retrieveTodos();
   }, []);
-
   const addTodo = async (date, content, requireTime) => {
     const newTodo = {
-      id: Date.now().toString,
+      id: Date.now().toString(),
       content,
       isComplete: false,
       requireTime,
@@ -43,7 +42,7 @@ export function TodoProvider({ children }) {
         date: key,
         todos: JSON.parse(value),
       }));
-      setTodos(parsedTodos);
+      setData(parsedTodos);
     } catch (error) {
       console.log("Error restrieving todos:", error);
     }
@@ -68,8 +67,19 @@ export function TodoProvider({ children }) {
       console.error("Error deleting todo:", error);
     }
   };
+
+  const clearAllAsyncStorage = async () => {
+    try {
+      await AsyncStorage.clear();
+      console.log("AsyncStorage 데이터가 모두 삭제되었습니다.");
+    } catch (e) {
+      console.error("AsyncStorage 데이터 삭제 중 오류 발생:", e);
+    }
+  };
   return (
-    <TodoContext.Provider value={{ todos, addTodo, deleteTodo }}>
+    <TodoContext.Provider
+      value={{ data, addTodo, deleteTodo, retrieveTodos, clearAllAsyncStorage }}
+    >
       {children}
     </TodoContext.Provider>
   );
