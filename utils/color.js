@@ -10,3 +10,9 @@ export function getBarColor(progress) {
   else if (progress > 0.25) return "#d7b003";
   else return "red";
 }
+
+export function getRequireTimeColor(time) {
+  if (time.getHours() > 6) return "#f48181";
+  else if (time.getHours() > 3) return "#d8c758";
+  else return "#58a7d8";
+}
