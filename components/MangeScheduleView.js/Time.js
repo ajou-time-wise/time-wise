@@ -1,12 +1,11 @@
 import { View, Text, StyleSheet } from "react-native";
+import { printTime } from "../../utils/time";
 
 function Time({ text, time }) {
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}>{text}</Text>
-      <Text style={styles.timeText}>
-        {time.getHours()} : {time.getMinutes()}
-      </Text>
+      <Text style={styles.timeText}>{printTime(time)}</Text>
     </View>
   );
 }

@@ -1,12 +1,11 @@
 import { View, Text, StyleSheet } from "react-native";
+import { printTime } from "../../utils/time";
 
 function TodoTime({ text, todo }) {
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}>{text}</Text>
-      <Text style={styles.timeText}>
-        {todo.requireTime.getHours()} : {todo.requireTime.getMinutes()}
-      </Text>
+      <Text style={styles.timeText}>{printTime(todo.requireTime)}</Text>
     </View>
   );
 }
