@@ -16,7 +16,7 @@ function ManageTodoView({ navigation }) {
   const [todo, setTodo] = useState({
     date: new Date(),
     content: "",
-    requireTime: new Date(),
+    requireTime: new Date(0, 0, 0, 1, 0, 0, 0),
   });
 
   const showTimePicker = () => {
