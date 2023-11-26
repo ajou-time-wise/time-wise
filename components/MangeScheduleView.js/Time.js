@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 10,
     marginHorizontal: 30,
+    backgroundColor: "white",
+    padding: 5,
+    borderRadius: 5,
   },
   titleText: {
     fontSize: 20,

@@ -17,7 +17,7 @@ export default Content;
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 10,
+    marginBottom: 30,
   },
   textInput: {
     borderRadius: 10,

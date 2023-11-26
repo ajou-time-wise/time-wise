@@ -46,31 +46,44 @@ function ManageScheduleView() {
 
   return (
     <View style={styles.container}>
-      <DatePicker date={date} setDate={setDate} />
-      <View style={styles.timeContainer}>
-        <Pressable
-          onPress={showStartTimePicker}
-          style={(pressed) => pressed && styles.pressed}
-        >
-          <Time text={"Start Time"} time={startTime} />
-        </Pressable>
-        <Pressable
-          onPress={showEndTimePicker}
-          style={(pressed) => pressed && styles.pressed}
-        >
-          <Time text={"End Time"} time={endTime} />
-        </Pressable>
+      <View
+        style={{
+          borderWidth: 0.5,
+          paddingHorizontal: 10,
+          paddingVertical: 30,
+          borderRadius: 10,
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ fontSize: 20, marginBottom: 20 }}>Add Schedule</Text>
+        <DatePicker date={date} setDate={setDate} />
+        <View style={styles.timeContainer}>
+          <Pressable
+            onPress={showStartTimePicker}
+            style={(pressed) => pressed && styles.pressed}
+          >
+            <Time text={"Start Time"} time={startTime} />
+          </Pressable>
+          <Pressable
+            onPress={showEndTimePicker}
+            style={(pressed) => pressed && styles.pressed}
+          >
+            <Time text={"End Time"} time={endTime} />
+          </Pressable>
+        </View>
+        <Content
+          placeholder={"Schedule Content"}
+          text={content}
+          setText={setContent}
+        />
+        <View style={{ width: 200, borderRadius: 10 }}>
+          <Button
+            title="ADD"
+            color={Colors.color50}
+            onPress={() => addSchedule(date, content, startTime, endTime)}
+          />
+        </View>
       </View>
-      <Content
-        placeholder={"Schedule Content"}
-        text={content}
-        setText={setContent}
-      />
-      <Button
-        title="ADD"
-        color={Colors.color50}
-        onPress={() => addSchedule(date, content, startTime, endTime)}
-      />
     </View>
   );
 }
@@ -87,6 +100,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: 30,
+    backgroundColor: Colors.chartBackgroundColor,
+    width: 300,
+    borderRadius: 10,
   },
   pressed: {
     opacity: 0.75,
