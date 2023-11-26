@@ -1,12 +1,18 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Bar } from "react-native-progress";
 
-function ProgressBar({ progress }) {
+function ProgressBar({ progress, color }) {
   return (
     <View style={styles.container}>
       <View>
-        <Text>Progres</Text>
-        <Bar progress={progress} width={300} height={10} />
+        <Text style={styles.text}>Progres</Text>
+        <Bar
+          progress={progress}
+          width={290}
+          height={10}
+          color={color}
+          style={{ borderColor: "grey", borderWidth: 1.5 }}
+        />
       </View>
     </View>
   );
@@ -19,5 +25,9 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     justifyContent: "center",
     alignItems: "center",
+  },
+  text: {
+    marginBottom: 5,
+    fontWeight: "bold",
   },
 });
