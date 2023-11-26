@@ -11,13 +11,25 @@ import InitialView from "./screens/InitialView";
 import ManageScheduleView from "./screens/ManageScheduleView";
 import { ScheduleContext, ScheduleProvider } from "./hooks/ScheduleProvider";
 import { TodoProvider } from "./hooks/TodoProvider";
+import { Colors } from "./constant/colors";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function TimeWiseMainView({ navigation }) {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={({ navigation }) => ({
+        headerTitle: "Time Wise",
+        headerStyle: { backgroundColor: Colors.tabColor },
+        headerTintColor: "white",
+        tabBarStyle: {
+          backgroundColor: Colors.tabColor,
+        },
+        tabBarActiveTintColor: "white",
+        tabBarInactiveTintColor: Colors.tabTintColor,
+      })}
+    >
       <Tab.Screen
         name="Calendar"
         component={CalendarTodoListView}
@@ -78,7 +90,13 @@ export default function App() {
     <ScheduleProvider>
       <TodoProvider>
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator
+            screenOptions={{
+              headerTitle: "Time Wise",
+              headerStyle: { backgroundColor: Colors.tabColor },
+              headerTintColor: "white",
+            }}
+          >
             <Stack.Screen
               name="TimeWiseMainView"
               component={TimeWiseMainView}
