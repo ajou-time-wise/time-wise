@@ -22,7 +22,7 @@ export default ProgressBar;
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 20,
+    marginVertical: 10,
     justifyContent: "center",
     alignItems: "center",
   },
