@@ -17,8 +17,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 10,
+    marginVertical: 20,
     marginHorizontal: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 5,
   },
   titleText: {
     fontSize: 20,

@@ -45,8 +45,17 @@ function TodoChart({ todos, schedules, todo }) {
 
   return (
     <View style={styles.container}>
-      <Pie progress={progress} size={100} color={color} />
-      <View>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginHorizontal: 10,
+        }}
+      >
+        <Text style={{ fontWeight: "bold", marginBottom: 5 }}>Spend Time</Text>
+        <Pie progress={progress} size={100} color={color} />
+      </View>
+      <View style={{ marginHorizontal: 10 }}>
         <TimeFormat
           text={"Schedule Requrie Time"}
           time={new Date(scheduleDration)}
@@ -68,5 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.chartBackgroundColor,
     padding: 10,
     borderRadius: 5,
+    marginBottom: 20,
+    width: 300,
   },
 });

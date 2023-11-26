@@ -33,11 +33,13 @@ export default TodoDate;
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: "center",
     backgroundColor: Colors.color50,
-    borderRadius: 15,
+    borderRadius: 10,
     paddingHorizontal: 10,
     paddingVertical: 5,
-    marginVertical: 10,
+    marginBottom: 30,
+    width: 200,
   },
   text: {
     fontSize: 30,

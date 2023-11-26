@@ -21,7 +21,7 @@ function ManageTodoView({ navigation }) {
 
   const showTimePicker = () => {
     DateTimePickerAndroid.open({
-      value: new Date(),
+      value: new Date(0, 0, 0, 1, 0, 0, 0),
       onChange: (event, selectTime) => {
         const currentTime = selectTime || todo.requireTime;
         setTodo((prevTodo) => ({ ...prevTodo, requireTime: currentTime }));
@@ -41,11 +41,13 @@ function ManageTodoView({ navigation }) {
       >
         <TodoTime todo={todo} setTodo={setTodo} text={"Require Time"} />
       </Pressable>
-      <Button
-        title="ADD"
-        color={Colors.color50}
-        onPress={() => addTodo(todo.date, todo.content, todo.requireTime)}
-      />
+      <View style={{ width: 200, borderRadius: 5 }}>
+        <Button
+          title="ADD"
+          color={Colors.color50}
+          onPress={() => addTodo(todo.date, todo.content, todo.requireTime)}
+        />
+      </View>
     </View>
   );
 }
