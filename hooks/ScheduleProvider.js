@@ -10,6 +10,7 @@ export function ScheduleProvider({ children }) {
 
   useEffect(() => {
     retrieveSchedules();
+    console.log(scheduleData);
   }, []);
 
   const addSchedule = async (date, title, start, end) => {
