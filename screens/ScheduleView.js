@@ -12,12 +12,14 @@ function ScheduleView() {
     setEvents(scheduleData);
   }, [scheduleData]);
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <Calendar
         events={events}
         height={600}
         eventCellStyle={styles.eventCellStyle}
         scrollViewStyle={styles.scrollViewStyle}
+        bodyContainerStyle={{ flex: 1, backgroundColor: "white" }}
+        headerContainerStyle={{ height: 70 }}
       />
     </View>
   );
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   eventCellStyle: {
-    backgroundColor: Colors.color50,
+    backgroundColor: Colors.cellColor,
     borderRadius: 5,
   },
 });

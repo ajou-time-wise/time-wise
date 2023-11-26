@@ -4,4 +4,5 @@ export const Colors = {
   chartBackgroundColor: "#d1d1d1cc",
   tabColor: "#5c94c6cc",
   tabTintColor: "#4b4b4b",
+  cellColor: "#1892fdcc",
 };
