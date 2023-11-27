@@ -73,19 +73,19 @@ function TimeWiseMainView({ navigation }) {
 }
 
 export default function App() {
-  // const [showMainScreen, setShowMainScreen] = useState(false);
+  const [showMainScreen, setShowMainScreen] = useState(false);
 
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     setShowMainScreen(true);
-  //   }, 2000);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowMainScreen(true);
+    }, 2000);
 
-  //   return () => clearTimeout(timeout);
-  // }, []);
+    return () => clearTimeout(timeout);
+  }, []);
 
-  // if (!showMainScreen) {
-  //   return <InitialView />;
-  // }
+  if (!showMainScreen) {
+    return <InitialView />;
+  }
   return (
     <ScheduleProvider>
       <TodoProvider>

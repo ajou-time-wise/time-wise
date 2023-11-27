@@ -9,7 +9,6 @@ export function TodoProvider({ children }) {
 
   useEffect(() => {
     retrieveTodos();
-    console.log(data);
   }, []);
 
   const addTodo = async (date, content, requireTime) => {
