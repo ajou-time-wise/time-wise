@@ -10,8 +10,19 @@ import { useEffect, useState } from "react";
 import InitialView from "./screens/InitialView";
 import ManageScheduleView from "./screens/ManageScheduleView";
 import { ScheduleContext, ScheduleProvider } from "./hooks/ScheduleProvider";
-import { TodoProvider } from "./hooks/TodoProvider";
+import { TodoProvider, useTodoContext } from "./hooks/TodoProvider";
 import { Colors } from "./constant/colors";
+import * as Notifications from "expo-notifications";
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => {
+    return {
+      shouldPlaySound: false,
+      shouldSetBadge: false,
+      shouldShowAlert: true,
+    };
+  },
+});
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -74,6 +85,29 @@ function TimeWiseMainView({ navigation }) {
 
 export default function App() {
   const [showMainScreen, setShowMainScreen] = useState(false);
+  const scheduleNotification = async (content, trigger) => {
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: "Time Wise",
+        body: content,
+      },
+      trigger,
+    });
+  };
+
+  useEffect(() => {
+    const morningTrigger = { hour: 9, minute: 0, repeats: true };
+    const afternoonTrigger1 = { hour: 12, minute: 0, repeats: true };
+    const afternoonTrigger2 = { hour: 15, minute: 0, repeats: true };
+    const eveningTrigger1 = { hour: 18, minute: 0, repeats: true };
+    const eveningTrigger2 = { hour: 21, minute: 0, repeats: true };
+
+    scheduleNotification("Let's Do It", morningTrigger);
+    scheduleNotification("Let's Do It", afternoonTrigger1);
+    scheduleNotification("Let's Do It", afternoonTrigger2);
+    scheduleNotification("Let's Do It", eveningTrigger1);
+    scheduleNotification("Let's Do It", eveningTrigger2);
+  }, []);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
