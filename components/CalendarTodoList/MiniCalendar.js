@@ -3,7 +3,7 @@ import { Calendar } from "react-native-calendars";
 import Todos from "../../data/Todos";
 import { isEqulsDate } from "../../utils/date";
 
-function MiniCalendar({ setSeletedDate }) {
+function MiniCalendar({ selectedDate, setSeletedDate }) {
   return (
     <View style={styles.container}>
       <Calendar
@@ -18,7 +18,5 @@ function MiniCalendar({ setSeletedDate }) {
 export default MiniCalendar;
 
 const styles = StyleSheet.create({
-  container: {
-    marginBottom: 10,
-  },
+  container: {},
 });

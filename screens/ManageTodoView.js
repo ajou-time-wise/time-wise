@@ -30,6 +30,12 @@ function ManageTodoView({ navigation }) {
       is24Hour: true,
     });
   };
+
+  const addTodoHandler = async () => {
+    await addTodo(todo.date, todo.content, todo.requireTime);
+    navigation.navigate("TimeWiseMainView");
+  };
+
   return (
     <View style={styles.container}>
       <TodoDate todo={todo} setTodo={setTodo} />
@@ -42,11 +48,7 @@ function ManageTodoView({ navigation }) {
         <TodoTime todo={todo} setTodo={setTodo} text={"Require Time"} />
       </Pressable>
       <View style={{ width: 200, borderRadius: 5 }}>
-        <Button
-          title="ADD"
-          color={Colors.color50}
-          onPress={() => addTodo(todo.date, todo.content, todo.requireTime)}
-        />
+        <Button title="ADD" color={Colors.color50} onPress={addTodoHandler} />
       </View>
     </View>
   );

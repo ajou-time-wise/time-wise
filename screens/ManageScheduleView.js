@@ -7,7 +7,7 @@ import Content from "../components/MangeScheduleView.js/Content";
 import { Colors } from "../constant/colors";
 import { useScheduleContext } from "../hooks/ScheduleProvider";
 
-function ManageScheduleView() {
+function ManageScheduleView({ navigation }) {
   const { scheduleData, addSchedule } = useScheduleContext();
 
   const [date, setDate] = useState(new Date());
@@ -22,7 +22,12 @@ function ManageScheduleView() {
   const showStartTimePicker = () => {
     showTimePicker(startTime, setStartime);
   };
-  //    end: new Date(2020, 1, 11, 16, 30),
+
+  const addScheduleHandler = async () => {
+    await addSchedule(date, content, startTime, endTime);
+    navigation.navigate("Schedule");
+  };
+
   const showTimePicker = (time, setTime) => {
     DateTimePickerAndroid.open({
       value: time,
@@ -80,7 +85,7 @@ function ManageScheduleView() {
           <Button
             title="ADD"
             color={Colors.color50}
-            onPress={() => addSchedule(date, content, startTime, endTime)}
+            onPress={addScheduleHandler}
           />
         </View>
       </View>

@@ -29,7 +29,10 @@ function CalendarTodoListView() {
 
   return (
     <>
-      <MiniCalendar setSeletedDate={setSeletedDate} />
+      <MiniCalendar
+        selectedDate={selectedDate}
+        setSeletedDate={setSeletedDate}
+      />
       <ProgressBar progress={progress} color={barColor} />
       <TodoList todos={findTodos} selectedDate={selectedDate} />
     </>
